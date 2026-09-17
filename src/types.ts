@@ -11,7 +11,7 @@ export type IdentifierType = 'auto' | 'UPC' | 'EAN' | 'GTIN' | 'ASIN' | 'Title';
 /** Identifier kinds the API returns (never "auto"). */
 export type ResolvedIdentifierType = 'UPC' | 'EAN' | 'GTIN' | 'ASIN' | 'Title';
 
-/** Amazon marketplace regions the resolution engine can search. */
+/** Amazon marketplace regions a lookup can be scoped to. */
 export type Region =
     | 'US'
     | 'CA'
@@ -129,7 +129,7 @@ export interface MappingResult {
 export type BatchItemStatus = 'pending' | 'completed' | 'not_found' | 'error';
 
 /**
- * One row of a batch job. Deliberately a smaller field set than AmazonListing: no link,
+ * One row of a batch job. Batch rows carry fewer fields than AmazonListing: no link,
  * isActive, category, categoryGroup, identifiers, listPrice, offerCountFba, offerCountMerchant
  * or isBuyBoxWinner. Look an identifier up individually with lookup() if you need those.
  */
