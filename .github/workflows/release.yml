@@ -2,13 +2,15 @@ name: Release
 
 # Publishes to npm when a v* tag is pushed.
 #
-# Auth: npm trusted publishing (OIDC) if it is configured for this package, which
-# needs no stored secret. Until then the workflow falls back to an NPM_TOKEN repo
-# secret (Settings > Secrets and variables > Actions), created as an npm
-# "Automation" access token so it works with 2FA enabled.
+# Auth: npm trusted publishing (OIDC). No token is stored anywhere - npm verifies this
+# workflow's identity directly. Configured on the package under Settings > Trusted
+# Publisher, and it must keep matching this workflow exactly:
+#   owner/repo = siktec-lab/product-mapper-ts, workflow = release.yml, environment = npm
+# Renaming this file, or changing the environment below, breaks publishing until the
+# trusted publisher is updated to match.
 #
-# Either way the publish is signed with provenance, so npm shows a verified link
-# back to this workflow run and commit.
+# The publish is signed with provenance, so npm shows a verified link back to this
+# workflow run and commit.
 on:
     push:
         tags: ['v*']
@@ -74,6 +76,8 @@ jobs:
                   cache: npm
 
             - name: Use an npm that supports trusted publishing
+              # OIDC publishing needs npm 11.5.1 or newer, which is ahead of the npm
+              # bundled with the Node versions this action installs.
               run: npm install -g npm@latest
 
             - run: npm ci
@@ -82,11 +86,7 @@ jobs:
             - name: Publish (dry run)
               if: github.event_name == 'workflow_dispatch' && inputs.dry_run
               run: npm publish --access public --provenance --dry-run
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Publish
               if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && !inputs.dry_run)
               run: npm publish --access public --provenance
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
