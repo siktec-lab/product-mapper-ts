@@ -1,6 +1,7 @@
 src/
 test/
 examples/
+scripts/
 .github/
 node_modules/
 tsconfig.json

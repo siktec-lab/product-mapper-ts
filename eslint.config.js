@@ -19,5 +19,12 @@ export default tseslint.config(
     {
         files: ['examples/**/*.ts'],
         rules: { '@typescript-eslint/no-non-null-assertion': 'off' }
+    },
+    {
+        // Plain Node scripts, run directly rather than bundled.
+        files: ['scripts/**/*.mjs'],
+        languageOptions: {
+            globals: { console: 'readonly', process: 'readonly', Response: 'readonly' }
+        }
     }
 );
