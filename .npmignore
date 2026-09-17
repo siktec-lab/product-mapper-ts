@@ -1,0 +1,10 @@
+src/
+test/
+examples/
+.github/
+node_modules/
+tsconfig.json
+tsup.config.ts
+eslint.config.js
+vitest.config.ts
+.prettierrc.json

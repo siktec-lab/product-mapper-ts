@@ -1,0 +1,66 @@
+{
+    "name": "@siktec-lab/productmapper",
+    "version": "0.1.0",
+    "description": "Official TypeScript/JavaScript client for the ProductMapper API. Resolve UPC, EAN, GTIN, ASIN or free-text titles into live Amazon catalog listings.",
+    "keywords": [
+        "productmapper",
+        "amazon",
+        "asin",
+        "upc",
+        "ean",
+        "gtin",
+        "barcode",
+        "product-data",
+        "catalog",
+        "sdk"
+    ],
+    "homepage": "https://product-mapper.com",
+    "bugs": {
+        "url": "https://github.com/siktec-lab/product-mapper-ts/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/siktec-lab/product-mapper-ts.git"
+    },
+    "license": "MIT",
+    "author": "SIKTEC",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint src test examples",
+        "format": "prettier --write .",
+        "prepublishOnly": "npm run build"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.18.0",
+        "@types/node": "^22.10.6",
+        "eslint": "^9.18.0",
+        "prettier": "^3.4.2",
+        "tsup": "^8.5.0",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.20.0",
+        "vitest": "^5.0.1"
+    }
+}
