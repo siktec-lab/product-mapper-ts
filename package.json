@@ -1,6 +1,6 @@
 {
     "name": "@siktec-lab/productmapper",
-    "version": "0.1.0",
+    "version": "1.2.1",
     "description": "Official TypeScript/JavaScript client for the ProductMapper API. Resolve UPC, EAN, GTIN, ASIN or free-text titles into live Amazon catalog listings.",
     "keywords": [
         "productmapper",

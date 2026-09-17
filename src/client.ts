@@ -3,6 +3,7 @@
  * that turn the queue-based endpoints into a single await.
  */
 import { DEFAULT_BASE_URL, request, type HttpConfig } from './http.js';
+import { VERSION } from './version.js';
 import { JobFailedError, ProductMapperError, TimeoutError, ValidationError } from './errors.js';
 import type {
     BatchJob,
@@ -18,7 +19,6 @@ import type {
     WaitJobOptions
 } from './types.js';
 
-const VERSION = '0.1.0';
 const MAX_BATCH_ITEMS = 500;
 const MAX_JOB_IDS = 100;
 const DEFAULT_JOB_TIMEOUT = 120_000;
