@@ -51,6 +51,15 @@ const okClient = new ProductMapper({
 
 const result = await okClient.lookup({ value: '753933140816', type: 'UPC' });
 assert.equal(result.marketplaceId, 'B09Z2J1MP2');
+
+// The build injects the package.json version, so the shipped User-Agent must carry a
+// real version, never the dev placeholder from src/version.ts.
+const pkg = require('../package.json');
+assert.equal(
+    seen.headers['User-Agent'],
+    `productmapper-node/${pkg.version}`,
+    'built User-Agent must match package.json version'
+);
 assert.equal(result.listingDetails.price, 1.5);
 assert.equal(seen.url, 'https://product-mapper.com/api/map');
 assert.equal(seen.headers.Authorization, 'Bearer pm_live_smoke');

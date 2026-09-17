@@ -597,3 +597,23 @@ describe('abort signal', () => {
         await expect(promise).rejects.toThrow();
     });
 });
+
+describe('version', () => {
+    // The version is declared once, in package.json, and injected at build time by tsup.
+    // In the test run there is no build step, so src/version.ts falls back to its dev
+    // placeholder. What matters here is that the User-Agent is wired to that single
+    // source rather than to a second hardcoded literal.
+    it('sends a versioned User-Agent', async () => {
+        const { client, calls } = makeClient([{ body: resultFixture }]);
+        await client.lookup({ value: 'x' });
+        const ua = calls[0]!.headers['User-Agent'];
+        expect(ua).toMatch(/^productmapper-node\//);
+    });
+
+    it('uses the exported VERSION constant', async () => {
+        const { VERSION } = await import('../src/version.js');
+        const { client, calls } = makeClient([{ body: resultFixture }]);
+        await client.lookup({ value: 'x' });
+        expect(calls[0]!.headers['User-Agent']).toBe(`productmapper-node/${VERSION}`);
+    });
+});
