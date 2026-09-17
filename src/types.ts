@@ -210,6 +210,10 @@ export interface HistoryRow {
     price: number | null;
     formattedPrice: string | null;
     imageUrl: string | null;
+    /**
+     * Live-verified values are "success" and "not_found". Note that history rows use a
+     * different vocabulary than batch items, which report "completed" for a match.
+     */
     status: string;
     createdAt: string;
     /** How many times you have looked up this exact identifier. */
