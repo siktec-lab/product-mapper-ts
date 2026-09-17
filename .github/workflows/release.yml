@@ -84,8 +84,16 @@ jobs:
             - run: npm run build
 
             - name: Publish (dry run)
+              # `npm publish --dry-run` still calls the registry and fails on a version
+              # that is already published, so it can never pass once a release is out.
+              # `npm whoami` proves the same thing that matters here - that OIDC produced
+              # a working credential - without touching an existing version.
               if: github.event_name == 'workflow_dispatch' && inputs.dry_run
-              run: npm publish --access public --provenance --dry-run
+              run: |
+                  echo "Verifying registry authentication..."
+                  npm whoami
+                  echo "Auth OK. Packing the tarball that a real release would upload:"
+                  npm pack --dry-run
 
             - name: Publish
               if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && !inputs.dry_run)
