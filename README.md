@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178c6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Types](https://img.shields.io/npm/types/@siktec-lab/productmapper.svg)](https://www.npmjs.com/package/@siktec-lab/productmapper)
 [![Node](https://img.shields.io/node/v/@siktec-lab/productmapper.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![Bundle size](https://img.shields.io/bundlephobia/minzip/@siktec-lab/productmapper)](https://bundlephobia.com/package/@siktec-lab/productmapper)
+[![Unpacked size](https://img.shields.io/npm/unpacked-size/@siktec-lab/productmapper)](https://www.npmjs.com/package/@siktec-lab/productmapper)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Official **Node.js and TypeScript client** for the [ProductMapper API](https://product-mapper.com).
